@@ -4,16 +4,17 @@ import { useRouter } from 'next/navigation'
 import CountdownForm from '@/components/CountdownForm'
 
 interface EditCountdownFormProps {
-  initialData: {
+  countdown: {
     id: number
     title: string
     targetDate: string
     backgroundColor?: string
     backgroundImage?: string
   }
+  isPersonal: boolean
 }
 
-export default function EditCountdownForm({ initialData }: EditCountdownFormProps) {
+export default function EditCountdownForm({ countdown, isPersonal }: EditCountdownFormProps) {
   const router = useRouter()
 
   const handleSubmit = async (data: {
@@ -23,29 +24,29 @@ export default function EditCountdownForm({ initialData }: EditCountdownFormProp
     backgroundImage?: string
   }) => {
     try {
-      const response = await fetch('/api/countdowns', {
+      const apiEndpoint = isPersonal ? '/api/personal-countdowns' : '/api/countdowns'
+      const response = await fetch(apiEndpoint, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          id: initialData.id,
+          id: countdown.id,
           ...data,
         }),
       })
       
       if (response.ok) {
-        router.push(`/countdowns/${initialData.id}`)
+        router.push('/countdowns')
+      } else {
+        const error = await response.json()
+        alert(error.error || '更新失败')
       }
     } catch (error) {
       console.error('Error updating countdown:', error)
+      alert('更新失败')
     }
   }
 
-  return (
-    <CountdownForm
-      initialData={initialData}
-      onSubmit={handleSubmit}
-    />
-  )
+  return <CountdownForm initialData={countdown} onSubmit={handleSubmit} />
 }

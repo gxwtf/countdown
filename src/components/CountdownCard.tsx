@@ -7,6 +7,8 @@ interface CountdownCardProps {
   targetDate: Date
   backgroundColor?: string
   backgroundImage?: string
+  isPersonal?: boolean
+  isAdmin?: boolean
 }
 
 export function CountdownCard({
@@ -15,12 +17,15 @@ export function CountdownCard({
   targetDate,
   backgroundColor,
   backgroundImage,
+  isPersonal = false,
+  isAdmin = false,
 }: CountdownCardProps) {
   const textColor = getContrastColor(backgroundColor || backgroundImage || '')
+  const detailHref = isPersonal ? `/personal/${id}` : `/countdowns/${id}`
   
   return (
     <Link
-      href={`/countdowns/${id}`}
+      href={detailHref}
       className={`relative rounded-lg shadow-lg overflow-hidden h-48 flex flex-col justify-center items-center transition-transform hover:scale-105`}
       style={{
         backgroundColor: backgroundColor || undefined,
@@ -36,6 +41,12 @@ export function CountdownCard({
         <p className="text-4xl font-bold">
           {getRemainingDays(targetDate)}
         </p>
+        {isPersonal && (
+          <p className="text-sm mt-2 opacity-75">个人倒数日</p>
+        )}
+        {isAdmin && !isPersonal && (
+          <p className="text-sm mt-2 opacity-75">公共倒数日</p>
+        )}
       </div>
     </Link>
   )
