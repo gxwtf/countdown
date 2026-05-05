@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect } from 'react'
+import { Suspense, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 
-export default function LoginPage() {
+function LoginContent() {
   const searchParams = useSearchParams()
   const back = searchParams.get('back') || '/countdowns'
 
@@ -17,5 +17,18 @@ export default function LoginPage() {
       <h1 className="text-2xl font-bold mb-6 text-center">正在重定向...</h1>
       <p className="text-center text-gray-500">正在准备您的页面，请耐心等待</p>
     </div>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-2xl font-bold mb-6 text-center">正在重定向...</h1>
+        <p className="text-center text-gray-500">正在准备您的页面，请耐心等待</p>
+      </div>
+    }>
+      <LoginContent />
+    </Suspense>
   )
 }
