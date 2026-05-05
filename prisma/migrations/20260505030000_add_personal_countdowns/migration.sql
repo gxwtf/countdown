@@ -1,6 +1,7 @@
 -- CreateTable
-CREATE TABLE "Countdown" (
+CREATE TABLE "PersonalCountdown" (
     "id" SERIAL NOT NULL,
+    "userId" INTEGER NOT NULL,
     "title" TEXT NOT NULL,
     "targetDate" TIMESTAMP(3) NOT NULL,
     "backgroundColor" TEXT,
@@ -8,5 +9,5 @@ CREATE TABLE "Countdown" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "Countdown_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "PersonalCountdown_pkey" PRIMARY KEY ("id")
 );
