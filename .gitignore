@@ -42,7 +42,6 @@ next-env.d.ts
 
 # sqlite
 *.db
-/prisma/migrations/
 
 # lock files
 yarn.lock
