@@ -30,7 +30,7 @@ export async function GET() {
 export async function POST(request: Request) {
   const session = await getSession()
   
-  if (!session.isLoggedIn) {
+  if (!session.isLoggedIn || !session.userId) {
     return NextResponse.json({ error: '未登录' }, { status: 401 })
   }
 

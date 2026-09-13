@@ -10,24 +10,30 @@
   },
   "dependencies": {
     "@prisma/client": "^6",
-    "axios": "^1.16.1",
+    "axios": "^1.20.0",
     "date-fns": "^4.4.0",
-    "iron-session": "^8.0.4",
-    "next": "16.2.6",
+    "iron-session": "^9.0.1",
+    "next": "16.3.5",
     "prisma": "^6",
-    "react": "^19.2.6",
-    "react-colorful": "^5.7.0",
-    "react-dom": "^19.2.6"
+    "react": "^19.3.0",
+    "react-colorful": "^5.8.1",
+    "react-dom": "^19.3.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^25",
+    "@types/node": "^26",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.2.6",
+    "eslint-config-next": "16.3.5",
     "tailwindcss": "^4",
     "typescript": "^6"
+  },
+  "allowScripts": {
+    "@prisma/client": true,
+    "@prisma/engines": true,
+    "prisma": true,
+    "unrs-resolver": true
   }
 }

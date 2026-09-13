@@ -30,7 +30,7 @@ export default async function CountdownPage(props: Props) {
       backgroundColor={countdown.backgroundColor}
       backgroundImage={countdown.backgroundImage}
       isPersonal={false}
-      canEdit={session.admin}
+      canEdit={session.admin || false}
       editHref={`/countdowns/${countdown.id}/edit`}
       deleteApiEndpoint="/api/countdowns"
     />

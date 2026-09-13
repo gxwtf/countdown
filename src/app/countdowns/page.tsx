@@ -34,9 +34,9 @@ export default async function CountdownsPage() {
         <h1 className="text-2xl font-bold">倒数日</h1>
         <div className="flex items-center gap-4">
           <UserNav
-            isLoggedIn={session.isLoggedIn}
+            isLoggedIn={session.isLoggedIn || false}
             username={session.username}
-            admin={session.admin}
+            admin={session.admin || false}
           />
         </div>
       </div>
